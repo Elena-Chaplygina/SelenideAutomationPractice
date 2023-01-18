@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.appear;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -13,6 +14,7 @@ public class TestPractice {
     static void beforeAll() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
+        Configuration.holdBrowserOpen=true;
 
     }
 
@@ -40,20 +42,25 @@ public class TestPractice {
 
         //Настройка окружения
         open("/automation-practice-form");
-        executeJavaScript("$('footer').remove()");
-        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()"); //jQuery
+        executeJavaScript("$('#fixedban').remove()"); //jQuery
 
         //Заполнение формы
-        $(".main-header").shouldHave(text("Practice Form"));
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         $("#firstName").setValue(userName);
         $("#lastName").setValue(lastName);
         $("#userEmail").setValue(userEmail);
-        $(byText(gender)).click();
+//        $(byText(gender)).click();//не очень хороший вариант для локализации на разных языках
+        //        $("#gender-radio-1").parent().click(); //один из способов
+        $("#genterWrapper").$(byText(gender)).click(); //best
         $("#userNumber").setValue(userNumber);
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__year-select").selectOption(yearOfBirth);
+        $(".react-datepicker__year-select").selectOption(yearOfBirth);// если элемент имеет тэг select
         $(".react-datepicker__month-select").selectOption(monthOfBirth);
+//        $(".react-datepicker__month-select").selectOptionByValue("6");
         $(".react-datepicker__week").$(byText(dataOfBirth)).click();
+//        $(".react-datepicker__day--001:not(.react-datepicker__day--outside-month)").click();//отличный вариант
+//        $x("//*[@class='react-datepicker__day--001'][not(contains(@class, 'react-datepicker__day--outside-month'))]").click();//отличный вариант на xpath
         $("#subjectsInput").setValue(subjectsFirst);
         $(".subjects-auto-complete__menu-list").$(byText(subjectsFirstFull)).click();
         $("#subjectsInput").setValue(subjectsSecond);
@@ -61,6 +68,10 @@ public class TestPractice {
         $("#hobbiesWrapper").$(byText(hobbie)).click();
         $("#uploadPicture").uploadFromClasspath(fileName);
         $("#currentAddress").setValue(address);
+        //1 способ
+//        $("#state").click();
+//        $("#stateCity-wrapper").$(byText("Rajasthan")).click();
+        //2 способ
         $(".css-1wa3eu0-placeholder").click();
         $(".col-md-4.col-sm-12").find(byText(state)).click();
         $(".css-1wa3eu0-placeholder").click();
@@ -68,7 +79,10 @@ public class TestPractice {
         $("#submit").click();
 
         //Проверка результата
+        $(".modal-content").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+//        $(".modal-body").shouldHave(text(userName),text(userEmail));//простой вариант
+        //вариант через xpath
         $x("//div[@class='modal-body']/div/table/tbody/tr[1]/td[2]").shouldHave(text(userName+" "+lastName));
         $x("//div[@class='modal-body']/div/table/tbody/tr[2]/td[2]").shouldHave(text(userEmail));
         $x("//div[@class='modal-body']/div/table/tbody/tr[3]/td[2]").shouldHave(text(gender));
