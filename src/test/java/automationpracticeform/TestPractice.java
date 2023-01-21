@@ -14,7 +14,7 @@ public class TestPractice {
     static void beforeAll() {
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.holdBrowserOpen=true;
+        Configuration.holdBrowserOpen = true;
 
     }
 
@@ -25,20 +25,20 @@ public class TestPractice {
         String userName = "Ivan";
         String lastName = "Ivanov";
         String userEmail = "ivanIvanovqaquru@mail.com";
-        String gender="Male";
+        String gender = "Male";
         String userNumber = "9001234567";
         String subjectsFirst = "h";
         String subjectsFirstFull = "History";
         String subjectsSecond = "m";
         String subjectsSecondFull = "Maths";
         String hobbie = "Music";
-        String fileName="doc.txt";
+        String fileName = "doc.txt";
         String address = "Lenina st, house 1";
-        String state="Rajasthan";
-        String city="Jaipur";
-        String dataOfBirth="1";
-        String monthOfBirth="May";
-        String yearOfBirth="1996";
+        String state = "Rajasthan";
+        String city = "Jaipur";
+        String dataOfBirth = "1";
+        String monthOfBirth = "May";
+        String yearOfBirth = "1996";
 
         //Настройка окружения
         open("/automation-practice-form");
@@ -83,18 +83,17 @@ public class TestPractice {
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 //        $(".modal-body").shouldHave(text(userName),text(userEmail));//простой вариант
         //вариант через xpath
-        $x("//div[@class='modal-body']/div/table/tbody/tr[1]/td[2]").shouldHave(text(userName+" "+lastName));
+        $x("//div[@class='modal-body']/div/table/tbody/tr[1]/td[2]").shouldHave(text(userName + " " + lastName));
         $x("//div[@class='modal-body']/div/table/tbody/tr[2]/td[2]").shouldHave(text(userEmail));
         $x("//div[@class='modal-body']/div/table/tbody/tr[3]/td[2]").shouldHave(text(gender));
         $x("//div[@class='modal-body']/div/table/tbody/tr[4]/td[2]").shouldHave(text(userNumber));
-        $x("//div[@class='modal-body']/div/table/tbody/tr[5]/td[2]").shouldHave(text(dataOfBirth + " "+monthOfBirth+","+yearOfBirth));
-        $x("//div[@class='modal-body']/div/table/tbody/tr[6]/td[2]").shouldHave(text(subjectsFirstFull+", "+subjectsSecondFull));
+        $x("//div[@class='modal-body']/div/table/tbody/tr[5]/td[2]").shouldHave(text(dataOfBirth + " " + monthOfBirth + "," + yearOfBirth));
+        $x("//div[@class='modal-body']/div/table/tbody/tr[6]/td[2]").shouldHave(text(subjectsFirstFull + ", " + subjectsSecondFull));
         $x("//div[@class='modal-body']/div/table/tbody/tr[7]/td[2]").shouldHave(text(hobbie));
         $x("//div[@class='modal-body']/div/table/tbody/tr[8]/td[2]").shouldHave(text(fileName));
         $x("//div[@class='modal-body']/div/table/tbody/tr[9]/td[2]").shouldHave(text(address));
-        $x("//div[@class='modal-body']/div/table/tbody/tr[10]/td[2]").shouldHave(text(state +" "+city));
+        $x("//div[@class='modal-body']/div/table/tbody/tr[10]/td[2]").shouldHave(text(state + " " + city));
         $("#closeLargeModal").click();
-
 
 
     }
