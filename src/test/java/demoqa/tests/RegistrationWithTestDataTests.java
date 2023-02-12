@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class RegistrationWithTestDataTests extends  TestData{
+public class RegistrationWithTestDataTests extends TestData{
 
     //Объявление переменных
 //    static String userName,
