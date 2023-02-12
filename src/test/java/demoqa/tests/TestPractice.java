@@ -1,4 +1,4 @@
-package automationpracticeform;
+package demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
@@ -32,7 +32,7 @@ public class TestPractice {
         String subjectsSecond = "m";
         String subjectsSecondFull = "Maths";
         String hobbie = "Music";
-        String fileName = "doc.txt";
+        String fileName = "doc.png";
         String address = "Lenina st, house 1";
         String state = "Rajasthan";
         String city = "Jaipur";
