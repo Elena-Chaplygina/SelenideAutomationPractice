@@ -30,8 +30,6 @@ dependencies {
             'com.github.javafaker:javafaker:1.0.2',
             'io.qameta.allure:allure-selenide:2.20.1'
     )
-
-
 }
 
 
@@ -40,6 +38,16 @@ test {
 }
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
 task simple_test(type: Test) {
     useJUnitPlatform {
@@ -50,5 +58,24 @@ task simple_test(type: Test) {
 task remote_test(type: Test) {
     useJUnitPlatform {
         includeTags("remote")
+    }
+}
+
+task one_property_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("one_property")
+    }
+}
+
+task hello_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("hello")
+    }
+}
+task two_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("hello")
+        includeTags("one_property")
+
     }
 }

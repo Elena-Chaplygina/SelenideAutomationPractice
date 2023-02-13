@@ -20,9 +20,9 @@ public class RandomUtils {
         Date datag=faker.date().birthday();
 //        datag.compareTo();
         System.out.println(datag);
-        System.out.println(datag.getYear());
-        System.out.println(datag.getDate());
-        System.out.println(datag.getMonth());
+//        System.out.println(datag.getYear());
+//        System.out.println(datag.getDate());
+//        System.out.println(datag.getMonth());
 
 
 
