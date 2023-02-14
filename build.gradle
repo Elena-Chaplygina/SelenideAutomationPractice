@@ -79,3 +79,10 @@ task two_test(type: Test) {
 
     }
 }
+task tag_examples_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("needed","negative")
+        excludeTags("prod")
+
+    }
+}
