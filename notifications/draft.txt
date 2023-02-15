@@ -16,4 +16,4 @@ curl -X POST  -H 'Content-Type: application/json'  -d '{"chat_id": "285811961", 
 
 Run jar with notifications
 java "-DconfigFile=notifications/config.json" -jar notifications/allure-notifications-4.2.1.jar
-java "-DconfigFile=notifications/config.json" -Dfile.encoding=UTF8 -cp-jar notifications/allure-notifications-4.2.1.jar
+java "-DconfigFile=notifications/config.json" -Dfile.encoding=UTF8 -jar notifications/allure-notifications-4.2.1.jar
